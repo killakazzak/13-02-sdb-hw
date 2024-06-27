@@ -126,6 +126,25 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```sh
 cryptsetup -y -v --type luks2 luksFormat /dev/sdb
 ```
+
+Вывод
+```sh
+root@ubuntu22-client:~# cryptsetup -y -v --type luks2 luksFormat /dev/sdb
+WARNING: Device /dev/sdb already contains a 'ext4' superblock signature.
+
+WARNING!
+========
+This will overwrite data on /dev/sdb irrevocably.
+
+Are you sure? (Type 'yes' in capital letters): YES
+Enter passphrase for /dev/sdb:
+Verify passphrase:
+Existing 'ext4' superblock signature on device /dev/sdb will be wiped.
+
+Key slot 0 created.
+Command successful.
+```
+
 Монтируем раздел
 
 ```sh
@@ -165,30 +184,6 @@ Writing superblocks and filesystem accounting information: done
 
 
 
-
-Шифруем раздел
-
-```sh
-cryptsetup -y -v --type luks2 luksFormat /dev/sdb
-```
-
-Вывод
-```sh
-root@ubuntu22-client:~# cryptsetup -y -v --type luks2 luksFormat /dev/sdb
-WARNING: Device /dev/sdb already contains a 'ext4' superblock signature.
-
-WARNING!
-========
-This will overwrite data on /dev/sdb irrevocably.
-
-Are you sure? (Type 'yes' in capital letters): YES
-Enter passphrase for /dev/sdb:
-Verify passphrase:
-Existing 'ext4' superblock signature on device /dev/sdb will be wiped.
-
-Key slot 0 created.
-Command successful.
-```
 
 
 ## Дополнительные задания (со звёздочкой*)
