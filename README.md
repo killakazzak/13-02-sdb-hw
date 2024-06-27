@@ -190,6 +190,13 @@ sudo mount /dev/mapper/cryptodisk .secret/
 ```
 
 
+Завершение работы
+
+```sh
+sudo umount .secret
+sudo cryptsetup luksClose cryptodisk
+```
+
 
 ## Дополнительные задания (со звёздочкой*)
 
