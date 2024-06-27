@@ -219,3 +219,13 @@ cryptsetup 2.4.3
 
 
 *В качестве ответа пришлите снимки экрана с поэтапным выполнением задания.*
+
+### Решение Задание 3 *
+
+Установка AppArmor
+
+```sh
+sudo apt install apparmor-profiles apparmor-utils apparmor-profiles-extra
+```
+
+
