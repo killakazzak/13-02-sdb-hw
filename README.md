@@ -333,8 +333,26 @@ PING ya.ru (77.88.44.242) 56(84) bytes of data.
 5 packets transmitted, 5 received, 0% packet loss, time 4005ms
 rtt min/avg/max/mdev = 4.568/4.630/4.831/0.101 ms
 ```
+Включаем режим блокировки
 
-
+```sh
+root@ubuntu22-client:~# sudo aa-complain man
+Setting /usr/bin/man to complain mode.
+root@ubuntu22-client:~# man ya.ru
+PING ya.ru (77.88.55.242) 56(84) bytes of data.
+64 bytes from ya.ru (77.88.55.242): icmp_seq=1 ttl=50 time=9.65 ms
+64 bytes from ya.ru (77.88.55.242): icmp_seq=2 ttl=50 time=9.36 ms
+64 bytes from ya.ru (77.88.55.242): icmp_seq=3 ttl=50 time=9.41 ms
+64 bytes from ya.ru (77.88.55.242): icmp_seq=4 ttl=50 time=9.49 ms
+64 bytes from ya.ru (77.88.55.242): icmp_seq=5 ttl=50 time=9.45 ms
+^C
+--- ya.ru ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 9.361/9.472/9.651/0.099 ms
+root@ubuntu22-client:~# sudo aa-enforce man
+Setting /usr/bin/man to enforce mode.
+root@ubuntu22-client:~# man ya.ru
+```
 
 Останавливаем службу
 
