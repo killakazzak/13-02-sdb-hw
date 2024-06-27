@@ -311,6 +311,30 @@ apparmor module is loaded.
 0 processes are in kill mode.
 ```
 
+Проверка
+
+```sh
+cp /usr/bin/man /usr/bin/man.orig
+cp /bin/ping /usr/bin/man
+man ya.ru
+```
+Вывод
+
+```sh
+root@ubuntu22-client:~# man ya.ru
+PING ya.ru (77.88.44.242) 56(84) bytes of data.
+64 bytes from ya.ru (77.88.44.242): icmp_seq=1 ttl=243 time=4.83 ms
+64 bytes from ya.ru (77.88.44.242): icmp_seq=2 ttl=243 time=4.57 ms
+64 bytes from ya.ru (77.88.44.242): icmp_seq=3 ttl=243 time=4.61 ms
+64 bytes from ya.ru (77.88.44.242): icmp_seq=4 ttl=243 time=4.57 ms
+64 bytes from ya.ru (77.88.44.242): icmp_seq=5 ttl=243 time=4.57 ms
+^C
+--- ya.ru ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4005ms
+rtt min/avg/max/mdev = 4.568/4.630/4.831/0.101 ms
+```
+
+
 
 Останавливаем службу
 
@@ -323,5 +347,11 @@ user@user:~$ sudo service apparmor stop
 ```sh
 user@user:~$ sudo service apparmor teardown
 ```
+Удаляем apparmor
+
+```sh
+apt remove --assume-yes --purge apparmor
+```
+
 
 
