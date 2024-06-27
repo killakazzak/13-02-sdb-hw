@@ -227,5 +227,89 @@ cryptsetup 2.4.3
 ```sh
 sudo apt install apparmor-profiles apparmor-utils apparmor-profiles-extra
 ```
+Проверяем статус AppArmor
+
+```sh
+root@ubuntu22-client:~# sudo apparmor_status
+apparmor module is loaded.
+66 profiles are loaded.
+48 profiles are in enforce mode.
+   /snap/snapd/20671/usr/lib/snapd/snap-confine
+   /snap/snapd/20671/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+   /snap/snapd/21759/usr/lib/snapd/snap-confine
+   /snap/snapd/21759/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+   /usr/bin/man
+   /usr/bin/pidgin
+   /usr/bin/pidgin//sanitized_helper
+   /usr/bin/totem
+   /usr/bin/totem-audio-preview
+   /usr/bin/totem-video-thumbnailer
+   /usr/bin/totem//sanitized_helper
+   /usr/lib/NetworkManager/nm-dhcp-client.action
+   /usr/lib/NetworkManager/nm-dhcp-helper
+   /usr/lib/connman/scripts/dhclient-script
+   /usr/lib/snapd/snap-confine
+   /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+   /{,usr/}sbin/dhclient
+   apt-cacher-ng
+   lsb_release
+   man_filter
+   man_groff
+   nvidia_modprobe
+   nvidia_modprobe//kmod
+   snap-update-ns.lxd
+   snap.lxd.activate
+   snap.lxd.benchmark
+   snap.lxd.buginfo
+   snap.lxd.check-kernel
+   snap.lxd.daemon
+   snap.lxd.hook.configure
+   snap.lxd.hook.install
+   snap.lxd.hook.remove
+   snap.lxd.lxc
+   snap.lxd.lxc-to-lxd
+   snap.lxd.lxd
+   snap.lxd.migrate
+   snap.lxd.user-daemon
+   tcpdump
+   ubuntu_pro_apt_news
+   ubuntu_pro_esm_cache
+   ubuntu_pro_esm_cache//apt_methods
+   ubuntu_pro_esm_cache//apt_methods_gpgv
+   ubuntu_pro_esm_cache//cloud_id
+   ubuntu_pro_esm_cache//dpkg
+   ubuntu_pro_esm_cache//ps
+   ubuntu_pro_esm_cache//ubuntu_distro_info
+   ubuntu_pro_esm_cache_systemctl
+   ubuntu_pro_esm_cache_systemd_detect_virt
+18 profiles are in complain mode.
+   /usr/bin/irssi
+   avahi-daemon
+   dnsmasq
+   dnsmasq//libvirt_leaseshelper
+   identd
+   klogd
+   mdnsd
+   nmbd
+   nscd
+   php-fpm
+   ping
+   samba-bgqd
+   smbd
+   smbldap-useradd
+   smbldap-useradd///etc/init.d/nscd
+   syslog-ng
+   syslogd
+   traceroute
+0 profiles are in kill mode.
+0 profiles are in unconfined mode.
+0 processes have profiles defined.
+0 processes are in enforce mode.
+0 processes are in complain mode.
+0 processes are unconfined but have a profile defined.
+0 processes are in mixed mode.
+0 processes are in kill mode.
+```
+
 
 
