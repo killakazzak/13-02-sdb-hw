@@ -354,6 +354,31 @@ Setting /usr/bin/man to enforce mode.
 root@ubuntu22-client:~# man ya.ru
 ```
 
+Просмотр профиля приложения ping
+
+```sh
+nano /etc/apparmor.d/bin.ping
+abi <abi/3.0>,
+
+include <tunables/global>
+profile ping /{usr/,}bin/{,iputils-}ping flags=(complain) {
+  include <abstractions/base>
+  include <abstractions/consoles>
+  include <abstractions/nameservice>
+
+  capability net_raw,
+  capability setuid,
+  network inet raw,
+  network inet6 raw,
+
+  /{,usr/}bin/{,iputils-}ping mixr,
+  /etc/modules.conf r,
+
+  # Site-specific additions and overrides. See local/README for details.
+  include if exists <local/bin.ping>
+}
+```
+
 Останавливаем службу
 
 ```sh
