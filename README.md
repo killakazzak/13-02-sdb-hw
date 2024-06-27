@@ -105,6 +105,10 @@ lrwxrwxrwx 1 cryptouser cryptouser   52 Jun 27 14:33 README.txt -> /usr/share/ec
 
 ```sh
 sudo apt install gparted
+apt install cryptsetup
+root@ubuntu22-client:~# cryptsetup --version
+cryptsetup 2.4.3
+
 ```
 
 
