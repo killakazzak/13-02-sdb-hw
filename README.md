@@ -145,7 +145,7 @@ Key slot 0 created.
 Command successful.
 ```
 
-Монтируем раздел
+Открываем устройство /dev/sdb и задаем ему имя cryptodisk
 
 ```sh
 sudo cryptsetup luksOpen /dev/sdb cryptodisk
@@ -182,7 +182,12 @@ Creating journal (1024 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
 
+Монтируем открытый раздел
 
+```sh
+mkdir .secret
+sudo mount /dev/mapper/cryptodisk .secret/
+```
 
 
 
