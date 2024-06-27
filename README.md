@@ -98,6 +98,98 @@ lrwxrwxrwx 1 cryptouser cryptouser   52 Jun 27 14:33 README.txt -> /usr/share/ec
 
 *В качестве ответа пришлите снимки экрана с поэтапным выполнением задания.*
 
+### Решение Задание 2
+
+Устанавливаем gparted cryptsetup (LUKS)
+
+```sh
+apt install gparted cryptsetup
+```
+Проверка
+
+```sh
+root@ubuntu22-client:~# cryptsetup --version
+cryptsetup 2.4.3
+```
+В esxi добавляем доп. диск размер (100 МБ)
+Проверка
+```
+fdisk -l
+Disk /dev/sdb: 100 MiB, 104857600 bytes, 204800 sectors
+Disk model: Virtual disk
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+```
+Подготавливаем раздел (тип luks2)
+
+```sh
+cryptsetup -y -v --type luks2 luksFormat /dev/sdb
+```
+Монтируем раздел
+
+```sh
+sudo cryptsetup luksOpen /dev/sdb cryptodisk
+```
+Проверяем
+
+```sh
+root@ubuntu22-client:~# ls -al /dev/mapper/cryptodisk
+lrwxrwxrwx 1 root root 7 Jun 27 20:53 /dev/mapper/cryptodisk -> ../dm-1
+```
+
+Форматируем раздел
+
+```sh
+sudo dd if=/dev/zero of=/dev/mapper/cryptodisk
+sudo mkfs.ext4 /dev/mapper/cryptodisk
+```
+
+Вывод
+
+```sh
+root@ubuntu22-client:~# sudo dd if=/dev/zero of=/dev/mapper/cryptodisk
+dd: writing to '/dev/mapper/cryptodisk': No space left on device
+172033+0 records in
+172032+0 records out
+88080384 bytes (88 MB, 84 MiB) copied, 1.76524 s, 49.9 MB/s
+root@ubuntu22-client:~# sudo mkfs.ext4 /dev/mapper/cryptodisk
+mke2fs 1.46.5 (30-Dec-2021)
+Creating filesystem with 21504 4k blocks and 21504 inodes
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (1024 blocks): done
+Writing superblocks and filesystem accounting information: done
+```
+
+
+
+
+Шифруем раздел
+
+```sh
+cryptsetup -y -v --type luks2 luksFormat /dev/sdb
+```
+
+Вывод
+```sh
+root@ubuntu22-client:~# cryptsetup -y -v --type luks2 luksFormat /dev/sdb
+WARNING: Device /dev/sdb already contains a 'ext4' superblock signature.
+
+WARNING!
+========
+This will overwrite data on /dev/sdb irrevocably.
+
+Are you sure? (Type 'yes' in capital letters): YES
+Enter passphrase for /dev/sdb:
+Verify passphrase:
+Existing 'ext4' superblock signature on device /dev/sdb will be wiped.
+
+Key slot 0 created.
+Command successful.
+```
+
 
 ## Дополнительные задания (со звёздочкой*)
 
