@@ -312,4 +312,16 @@ apparmor module is loaded.
 ```
 
 
+Останавливаем службу
+
+```sh
+user@user:~$ sudo service apparmor stop
+```
+
+Выгружаем профили
+
+```sh
+user@user:~$ sudo service apparmor teardown
+```
+
 
