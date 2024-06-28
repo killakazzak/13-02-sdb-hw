@@ -112,7 +112,13 @@ root@ubuntu22-client:~# cryptsetup --version
 cryptsetup 2.4.3
 ```
 В esxi добавляем доп. диск размер (100 МБ)
+
+```sh
+echo "- - -" | tee /sys/class/scsi_host/host*/scan
+```
+
 Проверка
+
 ```
 fdisk -l
 Disk /dev/sdb: 100 MiB, 104857600 bytes, 204800 sectors
